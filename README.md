@@ -27,7 +27,7 @@ You can view the React application in the browser at
 
 When you submit your work, you should also submit a short screen recording, no more than 1 minute in length. You do not need to narrate, but you should open your React Dev Tools and show off the following features:
 
-- Changing the state of a SinglePet (without clicking anything)
+- Changing the state of a SinglePet
 - Changing the props of PetList
 - _Optional:_ Anything else that you found useful!
 
