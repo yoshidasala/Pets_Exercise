@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --watch tests --ignore node_modules --ignore public",
-    "start": "npm run start-server",
-    "start-client": "parcel src/index.html",
-    "start-server": "nodemon main"
+    "start": "nodemon main"
   },
   "mocha": {
     "require": [
