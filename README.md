@@ -22,15 +22,3 @@ As you work through the tests, you are encouraged to view the running React appl
 
 You can view the React application in the browser at
 [localhost:8080](http://localhost:8080)
-
-## React Dev Tools Screencast
-
-When you submit your work, you should also submit a short screen recording, no more than 1 minute in length. You do not need to narrate, but you should open your React Dev Tools and show off the following features:
-
-- Changing the state of a SinglePet
-- Changing the props of PetList
-- _Optional:_ Anything else that you found useful!
-
-Please upload your video to YouTube _as an unlisted video_ and paste the link below.
-
-📺 Screencast Link Goes Here:
