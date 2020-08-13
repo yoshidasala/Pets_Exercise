@@ -1,7 +1,9 @@
-import React from "react"
+import React from 'react';
 
-const SinglePet = () => {
-  return <div className="single-pet"></div>
+class SinglePet extends React.Component {
+  render() {
+    return <div className="single-pet"></div>;
+  }
 }
 
-export default SinglePet
+export default SinglePet;
