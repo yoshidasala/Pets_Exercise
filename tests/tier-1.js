@@ -1,10 +1,10 @@
 /* eslint-env mocha */
-import React from "react"
-import { expect } from "chai"
-import { mount } from "enzyme"
+import React from 'react';
+import { expect } from 'chai';
+import { mount } from 'enzyme';
 
-import SinglePet from "../src/components/SinglePet"
-import { findButton } from "./utils"
+import SinglePet from '../src/components/SinglePet';
+import { findButton } from './utils';
 
 /**
  * Tier 1 is about
@@ -39,95 +39,95 @@ import { findButton } from "./utils"
  * only have the class single-pet.
  */
 
-describe("Tier 1: SinglePet component", () => {
+describe('Tier 1: SinglePet component', () => {
   const rigatoni = {
     id: 1,
-    name: "Rigatoni",
-    description: "A flaming hot cheetoh in feline form",
-    species: "cat"
-  }
+    name: 'Rigatoni',
+    description: 'A flaming hot cheetoh in feline form',
+    species: 'cat',
+  };
 
   const cody = {
     id: 2,
-    name: "Cody",
-    description: "Adorable pug who loves to hug",
-    species: "dog"
-  }
+    name: 'Cody',
+    description: 'Adorable pug who loves to hug',
+    species: 'dog',
+  };
 
   xit("renders a pet's name, description, and species passed in as props", () => {
-    const wrapper = mount(<SinglePet pet={rigatoni} />)
-    expect(wrapper).to.include.text("Rigatoni")
-    expect(wrapper).to.include.text("A flaming hot cheetoh in feline form")
-    expect(wrapper).to.include.text("cat")
-  })
+    const wrapper = mount(<SinglePet pet={rigatoni} />);
+    expect(wrapper).to.include.text('Rigatoni');
+    expect(wrapper).to.include.text('A flaming hot cheetoh in feline form');
+    expect(wrapper).to.include.text('cat');
+  });
 
-  xit("renders different name, description, and species if passed different props", () => {
-    const wrapper = mount(<SinglePet pet={cody} />)
-    expect(wrapper).to.include.text("Cody")
-    expect(wrapper).to.include.text("Adorable pug who loves to hug")
-    expect(wrapper).to.include.text("dog")
-  })
+  xit('renders different name, description, and species if passed different props', () => {
+    const wrapper = mount(<SinglePet pet={cody} />);
+    expect(wrapper).to.include.text('Cody');
+    expect(wrapper).to.include.text('Adorable pug who loves to hug');
+    expect(wrapper).to.include.text('dog');
+  });
 
   xit("renders a 'Toggle Status' button", () => {
     // The button doesn't need to "do anything" just yet. See the next test.
-    const wrapper = mount(<SinglePet pet={rigatoni} />)
+    const wrapper = mount(<SinglePet pet={rigatoni} />);
 
-    expect(wrapper).to.containMatchingElement(<button>Toggle Status</button>)
-  })
+    expect(wrapper).to.containMatchingElement(<button>Toggle Status</button>);
+  });
 
   xit("the 'Toggle Status' button toggles 'Available' to 'Adopted!'", () => {
-    const wrapper = mount(<SinglePet pet={rigatoni} />)
-    const toggleAdoptedButton = findButton(wrapper, "Toggle Status")
+    const wrapper = mount(<SinglePet pet={rigatoni} />);
+    const toggleAdoptedButton = findButton(wrapper, 'Toggle Status');
 
-    expect(toggleAdoptedButton).to.have.length(1)
+    expect(toggleAdoptedButton).to.have.length(1);
 
     // The component should render "Available for adoption" and not "Adopted!"
-    expect(wrapper.text()).to.contain("Available")
-    expect(wrapper.text()).to.not.contain("Adopted!")
+    expect(wrapper.text()).to.contain('Available');
+    expect(wrapper.text()).to.not.contain('Adopted!');
 
     // Click the button!
-    toggleAdoptedButton.simulate("click")
+    toggleAdoptedButton.simulate('click');
 
     // NOW the component should render "Adopted!"
-    expect(wrapper.text()).to.not.contain("Available")
-    expect(wrapper.text()).to.contain("Adopted!")
-  })
+    expect(wrapper.text()).to.not.contain('Available');
+    expect(wrapper.text()).to.contain('Adopted!');
+  });
 
   xit("the 'Toggle Status' button toggles 'Adopted!' to 'Available'", () => {
-    const wrapper = mount(<SinglePet pet={rigatoni} />)
-    const toggleAdoptedButton = findButton(wrapper, "Toggle Status")
+    const wrapper = mount(<SinglePet pet={rigatoni} />);
+    const toggleAdoptedButton = findButton(wrapper, 'Toggle Status');
 
-    expect(wrapper.text()).to.contain("Available")
-    expect(wrapper.text()).to.not.contain("Adopted!")
+    expect(wrapper.text()).to.contain('Available');
+    expect(wrapper.text()).to.not.contain('Adopted!');
 
     // Click the button twice this time!
-    toggleAdoptedButton.simulate("click")
-    toggleAdoptedButton.simulate("click")
+    toggleAdoptedButton.simulate('click');
+    toggleAdoptedButton.simulate('click');
 
-    expect(wrapper.text()).to.contain("Available")
-    expect(wrapper.text()).to.not.contain("Adopted!")
-  })
+    expect(wrapper.text()).to.contain('Available');
+    expect(wrapper.text()).to.not.contain('Adopted!');
+  });
 
   xit("the 'Toggle Status' button toggles the 'adopted' css class", () => {
-    const wrapper = mount(<SinglePet pet={rigatoni} />)
-    const toggleAdoptedButton = findButton(wrapper, "Toggle Status")
+    const wrapper = mount(<SinglePet pet={rigatoni} />);
+    const toggleAdoptedButton = findButton(wrapper, 'Toggle Status');
 
     // At first, the container div should not have the adopted class applied
-    expect(wrapper).to.have.className("single-pet")
-    expect(wrapper).to.not.have.className("adopted")
+    expect(wrapper).to.have.className('single-pet');
+    expect(wrapper).to.not.have.className('adopted');
 
     // Click the button once
-    toggleAdoptedButton.simulate("click")
+    toggleAdoptedButton.simulate('click');
 
     // We should see both single-pet AND adopted class applied now
-    expect(wrapper).to.have.className("single-pet")
-    expect(wrapper).to.have.className("adopted")
+    expect(wrapper).to.have.className('single-pet');
+    expect(wrapper).to.have.className('adopted');
 
     // Click the button a second time
-    toggleAdoptedButton.simulate("click")
+    toggleAdoptedButton.simulate('click');
 
     // No adopted class anymore
-    expect(wrapper).to.have.className("single-pet")
-    expect(wrapper).to.not.have.className("adopted")
-  })
-})
+    expect(wrapper).to.have.className('single-pet');
+    expect(wrapper).to.not.have.className('adopted');
+  });
+});
