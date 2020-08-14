@@ -1,5 +1,5 @@
-import React from "react"
+import React from 'react';
 
-const DeletePet = () => null
+const DeletePet = () => null;
 
-export default DeletePet
+export default DeletePet;

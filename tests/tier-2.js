@@ -1,10 +1,10 @@
 /* eslint-env mocha */
-import React from "react"
-import { expect } from "chai"
-import { mount } from "enzyme"
+import React from 'react';
+import { expect } from 'chai';
+import { mount } from 'enzyme';
 
-import PetList from "../src/components/PetList"
-import { valueOf } from "./utils"
+import PetList from '../src/components/PetList';
+import { valueOf } from './utils';
 
 /**
  * Tier 2 is about
@@ -28,91 +28,91 @@ import { valueOf } from "./utils"
  * If the selected option is "dogs", render only the dogs
  */
 
-describe("Tier 2: PetList component", () => {
+describe('Tier 2: PetList component', () => {
   const pets = [
     {
       id: 1,
-      name: "Rigatoni",
-      description: "A flaming hot cheetoh in feline form",
-      species: "cat"
+      name: 'Rigatoni',
+      description: 'A flaming hot cheetoh in feline form',
+      species: 'cat',
     },
     {
       id: 2,
-      name: "Cody",
-      description: "Adorable pug who loves to hug",
-      species: "dog"
+      name: 'Cody',
+      description: 'Adorable pug who loves to hug',
+      species: 'dog',
     },
     {
       id: 3,
-      name: "Frankie",
-      description: "The snuggliest kitty",
-      species: "cat"
+      name: 'Frankie',
+      description: 'The snuggliest kitty',
+      species: 'cat',
     },
     {
       id: 4,
-      name: "Anabelle",
-      description: "Might eat your couch",
-      species: "dog"
-    }
-  ]
+      name: 'Anabelle',
+      description: 'Might eat your couch',
+      species: 'dog',
+    },
+  ];
 
-  xit("renders a list of SinglePets", () => {
-    const wrapper = mount(<PetList pets={pets} />)
-    expect(wrapper).to.include.text("Rigatoni")
-    expect(wrapper).to.include.text("Cody")
-    expect(wrapper).to.include.text("Frankie")
-    expect(wrapper).to.include.text("Anabelle")
-  })
+  xit('renders a list of SinglePets', () => {
+    const wrapper = mount(<PetList pets={pets} />);
+    expect(wrapper).to.include.text('Rigatoni');
+    expect(wrapper).to.include.text('Cody');
+    expect(wrapper).to.include.text('Frankie');
+    expect(wrapper).to.include.text('Anabelle');
+  });
 
-  xit("renders a select dropdown with three options: all, cats, dogs", () => {
-    const wrapper = mount(<PetList pets={pets} />)
-    const select = wrapper.find("select")
-    const options = select.find("option")
-    expect(options).to.have.lengthOf(3)
-    const optionValues = options.map(option => valueOf(option))
-    expect(optionValues).to.include.members(["all", "cats", "dogs"])
-  })
+  xit('renders a select dropdown with three options: all, cats, dogs', () => {
+    const wrapper = mount(<PetList pets={pets} />);
+    const select = wrapper.find('select');
+    const options = select.find('option');
+    expect(options).to.have.lengthOf(3);
+    const optionValues = options.map((option) => valueOf(option));
+    expect(optionValues).to.include.members(['all', 'cats', 'dogs']);
+  });
 
   xit("when the filter is set to 'cats', only render SinglePets with cats", () => {
-    const wrapper = mount(<PetList pets={pets} />)
+    const wrapper = mount(<PetList pets={pets} />);
 
     // By default, the value of select should be "all"
-    let select = wrapper.find("select")
+    let select = wrapper.find('select');
 
     // Simulate a user clicking the dropdown menu and selecting cats
-    select.simulate("change", { target: { value: "cats" } })
+    select.simulate('change', { target: { value: 'cats' } });
 
     // Now, the value of select should be "cats"
-    select = wrapper.find("select")
+    select = wrapper.find('select');
 
     // We should expect to see Rigatoni and Frankie, but not Cody or Anabelle
-    expect(wrapper).to.include.text("Rigatoni")
-    expect(wrapper).to.not.include.text("Cody")
-    expect(wrapper).to.include.text("Frankie")
-    expect(wrapper).to.not.include.text("Anabelle")
-  })
+    expect(wrapper).to.include.text('Rigatoni');
+    expect(wrapper).to.not.include.text('Cody');
+    expect(wrapper).to.include.text('Frankie');
+    expect(wrapper).to.not.include.text('Anabelle');
+  });
 
   xit("when the filter is set to 'dogs', only render SinglePets with dogs", () => {
-    const wrapper = mount(<PetList pets={pets} />)
+    const wrapper = mount(<PetList pets={pets} />);
 
     // By default, the value of select should be "all"
-    let select = wrapper.find("select")
-    expect(select).to.have.value("all")
+    let select = wrapper.find('select');
+    expect(select).to.have.value('all');
 
     // Simulate a user clicking the dropdown menu and selecting dogs
-    select.simulate("change", {
+    select.simulate('change', {
       target: {
-        value: "dogs"
-      }
-    })
+        value: 'dogs',
+      },
+    });
 
     // Now, the value of select should be "dogs"
-    select = wrapper.find("select")
+    select = wrapper.find('select');
 
     // We should expect to see Cody and Anabelle, but not Rigatoni or Frankie
-    expect(wrapper).to.not.include.text("Rigatoni")
-    expect(wrapper).to.include.text("Cody")
-    expect(wrapper).to.not.include.text("Frankie")
-    expect(wrapper).to.include.text("Anabelle")
-  })
-})
+    expect(wrapper).to.not.include.text('Rigatoni');
+    expect(wrapper).to.include.text('Cody');
+    expect(wrapper).to.not.include.text('Frankie');
+    expect(wrapper).to.include.text('Anabelle');
+  });
+});

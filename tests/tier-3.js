@@ -1,12 +1,12 @@
 /* eslint-env mocha */
-import React from "react"
-import { expect } from "chai"
-import { mount } from "enzyme"
-import waitForExpect from "wait-for-expect"
-import Root from "../src/components/Root"
-import { mockAxios } from "./setup"
+import React from 'react';
+import { expect } from 'chai';
+import { mount } from 'enzyme';
+import waitForExpect from 'wait-for-expect';
+import Root from '../src/components/Root';
+import { mockAxios } from './setup';
 
-const getRequests = () => mockAxios.history.get
+const getRequests = () => mockAxios.history.get;
 
 /**
  * Tier 3 is about
@@ -27,91 +27,91 @@ const getRequests = () => mockAxios.history.get
  * While the data is loading, display a simple "Loading" message
  */
 
-describe("Tier 3: Root component", () => {
-  afterEach(() => mockAxios.reset())
+describe('Tier 3: Root component', () => {
+  afterEach(() => mockAxios.reset());
 
-  xit("fetches data from /api/pets once after Root first mounts", async () => {
-    expect(getRequests()).to.have.lengthOf(0)
+  xit('fetches data from /api/pets once after Root first mounts', async () => {
+    expect(getRequests()).to.have.lengthOf(0);
 
-    mount(<Root />)
+    mount(<Root />);
 
     await waitForExpect(() => {
-      expect(getRequests()).to.have.lengthOf(1)
-      const [getRequest] = getRequests()
-      expect(getRequest).to.deep.include({ url: "/api/pets" })
-    })
-  })
+      expect(getRequests()).to.have.lengthOf(1);
+      const [getRequest] = getRequests();
+      expect(getRequest).to.deep.include({ url: '/api/pets' });
+    });
+  });
 
-  xit("renders PetList with data retrieved from /api/pets", async () => {
+  xit('renders PetList with data retrieved from /api/pets', async () => {
     const samplePets = [
       {
         id: 1,
-        name: "Rigatoni",
-        description: "A flaming hot cheetoh in feline form",
-        species: "cat"
+        name: 'Rigatoni',
+        description: 'A flaming hot cheetoh in feline form',
+        species: 'cat',
       },
       {
         id: 2,
-        name: "Cody",
-        description: "Adorable pug who loves to hug",
-        species: "dog"
-      }
-    ]
+        name: 'Cody',
+        description: 'Adorable pug who loves to hug',
+        species: 'dog',
+      },
+    ];
     // For the purposes of this test, any axios request to /api/pets will
     // respond with the sample pets (above). It WILL NOT reach the express
     // routes defined in /app.js
-    mockAxios.onGet("/api/pets").reply(200, samplePets)
-    const wrapper = mount(<Root />)
+    mockAxios.onGet('/api/pets').reply(200, samplePets);
+    const wrapper = mount(<Root />);
 
     await waitForExpect(() => {
-      wrapper.update()
-      expect(wrapper).to.include.text("Rigatoni")
-      expect(wrapper).to.include.text("Cody")
-      expect(wrapper).to.not.include.text("Frankie")
-      expect(wrapper).to.not.include.text("Anabelle")
-    })
-  })
+      wrapper.update();
+      expect(wrapper).to.include.text('Rigatoni');
+      expect(wrapper).to.include.text('Cody');
+      expect(wrapper).to.not.include.text('Frankie');
+      expect(wrapper).to.not.include.text('Anabelle');
+    });
+  });
 
-  xit("displays loading message while waiting for the data", async () => {
+  xit('displays loading message while waiting for the data', async () => {
     const samplePets = [
       {
         id: 1,
-        name: "Frankie",
-        description: "The snuggliest kitty",
-        species: "cat"
+        name: 'Frankie',
+        description: 'The snuggliest kitty',
+        species: 'cat',
       },
       {
         id: 2,
-        name: "Anabelle",
-        description: "Might eat your couch",
-        species: "dog"
-      }
-    ]
-    mockAxios.onGet("/api/pets").reply(200, samplePets)
-    const wrapper = mount(<Root />)
+        name: 'Anabelle',
+        description: 'Might eat your couch',
+        species: 'dog',
+      },
+    ];
+    mockAxios.onGet('/api/pets').reply(200, samplePets);
+    const wrapper = mount(<Root />);
 
-    expect(wrapper).to.include.text("Loading")
+    expect(wrapper).to.include.text('Loading');
     await waitForExpect(() => {
-      wrapper.update()
-      expect(wrapper).to.not.include.text("Loading")
-      expect(wrapper).to.not.include.text("Rigatoni")
-      expect(wrapper).to.not.include.text("Cody")
-      expect(wrapper).to.include.text("Frankie")
-      expect(wrapper).to.include.text("Anabelle")
-    })
-  })
+      wrapper.update();
+      expect(wrapper).to.not.include.text('Loading');
+      expect(wrapper).to.not.include.text('Rigatoni');
+      expect(wrapper).to.not.include.text('Cody');
+      expect(wrapper).to.include.text('Frankie');
+      expect(wrapper).to.include.text('Anabelle');
+    });
+  });
 
-  xit("displays error message if the server responds with status code 500", async () => {
-    mockAxios.onGet("/api/pets").reply(500)
-    const wrapper = mount(<Root />)
+  xit('displays error message if the server responds with status code 500', async () => {
+    mockAxios.onGet('/api/pets').reply(500);
+    const wrapper = mount(<Root />);
 
-    expect(wrapper).to.not.include.text("Error")
+    expect(wrapper).to.not.include.text('Error');
     await waitForExpect(() => {
-      wrapper.update()
-      expect(wrapper).to.include.text("Error")
-      expect(wrapper).to.not.include.text("Loading")
-      expect(wrapper).to.not.include.text("Cody")
-      expect(wrapper).to.not.include.text("Rigatoni")
-    })
-  })
-})
+      wrapper.update();
+      expect(wrapper).to.include.text('Error');
+      expect(wrapper).to.not.include.text('Loading');
+      expect(wrapper).to.not.include.text('Cody');
+      expect(wrapper).to.not.include.text('Rigatoni');
+    });
+  });
+});
