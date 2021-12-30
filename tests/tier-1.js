@@ -68,14 +68,14 @@ describe('Tier 1: SinglePet component', () => {
     expect(wrapper).to.include.text('dog');
   });
 
-  xit("renders a 'Toggle Status' button", () => {
+  it("renders a 'Toggle Status' button", () => {
     // The button doesn't need to "do anything" just yet. See the next test.
     const wrapper = mount(<SinglePet pet={rigatoni} />);
 
     expect(wrapper).to.containMatchingElement(<button>Toggle Status</button>);
   });
 
-  xit("the 'Toggle Status' button toggles 'Available' to 'Adopted!'", () => {
+  it("the 'Toggle Status' button toggles 'Available' to 'Adopted!'", () => {
     const wrapper = mount(<SinglePet pet={rigatoni} />);
     const toggleAdoptedButton = findButton(wrapper, 'Toggle Status');
 
@@ -93,7 +93,7 @@ describe('Tier 1: SinglePet component', () => {
     expect(wrapper.text()).to.contain('Adopted!');
   });
 
-  xit("the 'Toggle Status' button toggles 'Adopted!' to 'Available'", () => {
+  it("the 'Toggle Status' button toggles 'Adopted!' to 'Available'", () => {
     const wrapper = mount(<SinglePet pet={rigatoni} />);
     const toggleAdoptedButton = findButton(wrapper, 'Toggle Status');
 
