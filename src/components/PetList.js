@@ -16,7 +16,7 @@ class PetList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      pets:this.props.pets
+    pets:this.props.pets
 
     }
 
@@ -26,13 +26,11 @@ class PetList extends React.Component {
     return (
       <>
         <div className="pet-list">
-          {this.state.pets.map((pet) => {
-            <div key={pet.id}>
-              <SinglePet pet={pet}/>
-            </div>
-
-            
+          <div>{this.props.pets.map((pet) => {
+            return <SinglePet key={pet.id} pet={pet}/>
           })}
+          </div>
+
 
 
 
