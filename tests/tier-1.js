@@ -108,7 +108,7 @@ describe('Tier 1: SinglePet component', () => {
     expect(wrapper.text()).to.not.contain('Adopted!');
   });
 
-  xit("the 'Toggle Status' button toggles the 'adopted' css class", () => {
+  it("the 'Toggle Status' button toggles the 'adopted' css class", () => {
     const wrapper = mount(<SinglePet pet={rigatoni} />);
     const toggleAdoptedButton = findButton(wrapper, 'Toggle Status');
 

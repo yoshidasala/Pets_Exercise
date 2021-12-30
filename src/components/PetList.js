@@ -1,3 +1,4 @@
+import { response } from 'express';
 import React from 'react';
 import SinglePet from './SinglePet';
 
@@ -11,11 +12,30 @@ const cody = {
 // PetList only renders one SinglePet. We'd like it to render a list of pets,
 // passed in as props.pets. Don't forget to add a unique key to each one!
 class PetList extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      pets:this.props.pets
+
+    }
+
+  }
   render() {
+
     return (
       <>
         <div className="pet-list">
-          <SinglePet pet={cody} />
+          {this.state.pets.map((pet) => {
+            <div key={pet.id}>
+              <SinglePet pet={pet}/>
+            </div>
+
+            
+          })}
+
+
+
         </div>
       </>
     );
