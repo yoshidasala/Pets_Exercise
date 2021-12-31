@@ -20,12 +20,13 @@ class PetList extends React.Component {
     };
     this.category = this.category.bind(this)
 
+
   }
+
 
 
   category(event) {
     this.setState({category: event.target.value})
-
 
   }
   render() {
@@ -41,12 +42,13 @@ class PetList extends React.Component {
     }
 
 
+
     return (
       <>
         <div className="pet-list">
           <div>
             {pets.map((pet) => {
-              return <SinglePet key={pet.id} pet={pet} />;
+              return <SinglePet key={pet.id} pet={pet}  />;
             })}
           </div>
 

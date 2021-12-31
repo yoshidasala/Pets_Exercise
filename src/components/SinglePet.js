@@ -1,30 +1,35 @@
 import React from 'react';
+import DeletePet from './DeletePet';
 
 class SinglePet extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       adopted: false,
-      pet:this.props.pet
+      pet: this.props.pet
+
 
     }
     this.togglebutton = this.togglebutton.bind(this)
 
+
+
   }
   togglebutton() {
     this.setState({ adopted: !this.state.adopted })
-
   }
+
   render() {
     return <div className={this.state.adopted ? "single-pet adopted":"single-pet"}>
       <h1>{this.state.pet.name}</h1>
       <h2>{this.state.pet.description}</h2>
       <p>{this.state.pet.species}</p>
       <button onClick={this.togglebutton}>Toggle Status</button>
-
+      <DeletePet petId={this.state.pet.id}/>
       <div>
           <h2>{this.state.adopted ? 'Adopted!' : 'Available'}</h2>
         </div>
+
     </div>;
   }
 }
